@@ -13,7 +13,6 @@ from optparse import OptionParser
 import random
 
 from signtool.signing.client import remote_signfile
-from signtool.util.archives import packtar, unpacktar
 from signtool.util.paths import findfiles
 
 
