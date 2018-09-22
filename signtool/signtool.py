@@ -9,7 +9,6 @@ import logging
 import os
 import sys
 from optparse import OptionParser
-import random
 import struct
 
 from signtool.signing.client import remote_signfile
@@ -237,7 +236,6 @@ def sign(options, args):
 
     for fmt in options.formats:
         urls = options.format_urls[fmt][:]
-        random.shuffle(urls)
 
         if fmt in ("macapp", ):
             fmt = "dmg"
