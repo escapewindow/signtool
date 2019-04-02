@@ -60,7 +60,7 @@ def sign_options():
     options.tokenfile = "token"
     options.format_urls = {
         "gpg": ["gpgurl1", "gpgurl2"],
-        "signcode": ["signcodeurl1", "signcodeurl2"],
+        "sha2signcode-v2": ["sha2signcode1", "sha2signcode2"],
         "dmg": ["dmgurl1", "dmgurl2"],
         "macapp": ["dmgurl1", "dmgurl2"],
     }
@@ -68,7 +68,7 @@ def sign_options():
     options.excludes = []
     options.output_dir = None
     options.output_file = None
-    options.formats = ["dmg", "signcode", "gpg", "macapp"]
+    options.formats = ["dmg", "sha2signcode-v2", "gpg", "macapp"]
     return options
 
 
@@ -162,13 +162,11 @@ def test_main(args):
 
 
 # sign {{{1
-@pytest.mark.parametrize("output_dir,output_file", ((
-    "foo", None
-), (
-    None, "foo"
-), (
-    None, None
-)))
+@pytest.mark.parametrize("output_dir,output_file", (
+    ("foo", None),
+    (None, "foo"),
+    (None, None))
+)
 def test_sign(output_dir, output_file, sign_options):
     sign_options.output_dir = output_dir
     sign_options.output_file = output_file
