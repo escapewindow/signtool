@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [3.3.0] - 2019-04-01
+## [4.0.0] - 2019-04-01
 ### Added
 - sha2signcode-v2 support
 
