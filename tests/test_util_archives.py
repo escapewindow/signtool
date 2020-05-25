@@ -65,3 +65,26 @@ def test_unpackfile(tmpdir, path, raises, expected, mocker):
         archives.unpackfile(path, tmpdir_path)
         if expected is not None:
             assert os.path.exists(os.path.join(tmpdir_path, expected))
+
+
+# packfile {{{1
+@pytest.mark.parametrize('path,raises,expected', ((
+    "foo.tar", False, 'tar'
+), (
+    __file__, ValueError, None
+), (
+    "foo.exe", False, 'exe'
+), (
+    "foo.mar", False, 'mar'
+)))
+def test_packfile(tmpdir, path, raises, expected, mocker):
+    tmpdir_path = str(tmpdir)
+    mocker.patch.object(archives, "packmar", return_value="mar")
+    mocker.patch.object(archives, "packexe", return_value="exe")
+    mocker.patch.object(archives, "tar_dir", return_value="tar")
+
+    if raises:
+        with pytest.raises(raises):
+            archives.packfile(path, tmpdir_path)
+    else:
+        assert archives.packfile(path, tmpdir_path) == expected
